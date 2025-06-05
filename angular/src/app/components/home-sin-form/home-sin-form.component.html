@@ -1,0 +1,92 @@
+<h1>home-sin-form works!</h1>
+<button class="btn add" (click)="ShowCreateModal()">Add User</button>
+<button class="btn load" (click)="getUsers()">Load Users</button>
+<div class="add-info-modal" #createModal>
+  <div class="modal-content">
+    <button class="close" #close (click)="closeModal()">&times;</button>
+
+    <form (ngSubmit)="creatUser()">
+      <label for="fname">First Name</label>
+      <input
+        #firstName
+        class="input"
+        type="text"
+        id="fname"
+        name="first_name"
+      />
+      <br />
+      <label for="lname">Last Name</label>
+      <input #lastName class="input" type="text" id="lname" name="last_name" />
+      <br />
+
+      <label for="email">Email Adress</label>
+      <input #email class="input" type="email" id="email" name="email" />
+      <br />
+
+      <button (click)="closeModal()" class="btn" type="submit" value="Create User">
+        Create
+      </button>
+    </form>
+  </div>
+</div>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Action</th>
+  </tr>
+  @for (user of userList; track user.user_id) {
+  <tr>
+    <td>{{ user.user_id }}</td>
+    <td>{{ user.first_name }}</td>
+    <td>{{ user.last_name }}</td>
+    <td>{{ user.email }}</td>
+    <td> 
+      <button class="btn del" (click)="deleteModal()" style="margin-right: 5px">delete</button>
+      <button class="btn upd" (click)="ShowUpdateModal(user.user_id)">update</button>
+    </td>
+  </tr>
+  <!-- modal delete  -->
+  <div class="add-info-modal" #modalDelete>
+    <div class="modal-content">
+      <span class="close" #close (click)="closeModal()">&times;</span>
+      <h3>Are you sure you want to delte this user?</h3>
+      <button class="btn" (click)="deleteUser(user.user_id)">Yes</button>
+      <button class="btn" (click)="closeModal()">No</button>
+    </div>
+  </div>
+  }
+</table>
+
+<!-- modal edit  -->
+<div class="add-info-modal" #modalEdit>
+  <div class="modal-content">
+    <span class="close" #close (click)="closeModal()">&times;</span>
+    <form (ngSubmit)="updeteUser()">
+      <input
+        type="text"
+        #update_fname
+        placeholder="Fist Name"
+        [value]="user.first_name"
+      />
+      <input
+        type="text"
+        #update_lame
+        placeholder="Last Name"
+        [value]="user.last_name"
+      />
+
+      <input
+        type="email"
+        #update_email
+        placeholder="Email"
+        [value]="user.email"
+      />
+      <button (click)="closeModal()" type="submit" class="btn">
+        Edit
+      </button>
+    </form>
+  </div>
+</div>
