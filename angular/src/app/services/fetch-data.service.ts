@@ -16,11 +16,7 @@ export class FetchDataService {
   
   }
   deleteData(apiUrl: string, endPoint: string, id: number) {
-    return this.http
-      .delete(apiUrl + endPoint + id, {
-        observe: 'body',
-        responseType: 'json',
-      })
+    return this.http.delete(apiUrl + endPoint + id)
 
   }
   editData(apiUrl: string, endPoint: string, id: number): Observable<any> {
