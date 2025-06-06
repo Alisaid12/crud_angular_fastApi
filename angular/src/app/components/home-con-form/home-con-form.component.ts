@@ -90,9 +90,7 @@ export class HomeConFormComponent {
   }
 
   editUser(id: number) {
-    this.ShowModal('create');
-    this.isUpdateMode = true;
-    this.dataUserService
+  J
       .editData(this.apiUrl, 'user?user_id=', id)
       .subscribe((res: any) => {
         this.userForm.patchValue({
