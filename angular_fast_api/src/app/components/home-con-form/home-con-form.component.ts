@@ -58,6 +58,8 @@ export class HomeConFormComponent {
       this.userForm.markAllAsTouched();
       return;
     }
+    console.log(this.userForm.value);
+    
     this.newUser = this.userForm.value;
     this.dataUserService
       .createData(this.apiUrl, 'create_user', this.newUser)

@@ -54,9 +54,8 @@ export class LoginComponent implements OnInit {
     const userCredential = await this.authService.login(this.credentials.value);
 
     if (userCredential) {
-      const user = userCredential.user
       this.router.navigateByUrl('/home', { replaceUrl: true });
-      const token = await user.getIdToken();
+      const token = await userCredential.user.getIdToken()
       console.log('Token =>', token);
     } else {
       this.showAlert('Login failed', 'Please try again!');

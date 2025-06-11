@@ -9,6 +9,7 @@ fastapi = {extras = ["standard"], version = "*"}
 firebase-admin = "*"
 mysql-connector = "*"
 pydantic-settings = "*"
+pymysql = "*"
 
 [dev-packages]
 
