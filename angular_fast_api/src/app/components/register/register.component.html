@@ -1,0 +1,10 @@
+<h1>Rigister</h1>
+
+<form  [formGroup]="credentials">
+        <input type="email" placeholder="Email" formControlName="email" />
+        <input type="password" placeholder="Password" formControlName="password" />
+
+        <!-- <button type="submit" expand="block" [disabled]="!credentials.valid">Log in</button> -->
+        <button type="button" expand="block" color="secondary" (click)="register()">Create account</button>
+        <a routerLink="">iniciar session</a>
+</form>

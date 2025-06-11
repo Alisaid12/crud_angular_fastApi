@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    font-family: arial, sans-serif;
+}
+.btn {
+    padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background-color: #284de8b8;
+      color: floralwhite;
+      margin: 0 10px 10px;
+      cursor: pointer;
+      transition: .4s;
+  }

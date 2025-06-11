@@ -1,0 +1,9 @@
+<h1>HOME</h1>
+
+<p>Esta página solo la veo si estoy logado.</p>
+
+<button type="button" (click)="logout()">Logout</button>
+<button (click)="getUsers()">get users</button>
+@for (user of userList; track $index) {
+        <h2>{{user.first_name}}</h2>
+}

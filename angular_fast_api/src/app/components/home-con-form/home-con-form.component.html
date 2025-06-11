@@ -1,0 +1,96 @@
+<h1>home-con-form works!</h1>
+<button class="btn add" (click)="ShowModal('create')">Add User</button>
+<button class="btn load" (click)="getUsers()">Load Users</button>
+<button class="btn logout" type="button" (click)="logout()">Logout</button>
+
+<div class="add-info-modal" #createModal>
+  <div class="modal-content">
+    <button class="btn close" (click)="closeModal()">&times;</button>
+
+    <form [formGroup]="userForm">
+      <label for="fname">First Name</label>
+      <input
+        #firstName
+        class="input"
+        type="text"
+        id="fname"
+        name="first_name"
+        formControlName="first_name"
+      />
+      <div class="text-danger" *ngIf="userForm.controls?.['first_name']?.touched">
+        <span *ngIf="userForm.controls?.['first_name']?.errors?.['required']">This Field is Required</span>
+      </div>
+      <br />
+      <label for="lname">Last Name</label>
+      <input #lastName class="input" type="text" id="lname" name="last_name"   formControlName="last_name"/>
+      <div class="text-danger" *ngIf="userForm.controls?.['last_name']?.touched">
+        <span *ngIf="userForm.controls?.['last_name']?.errors?.['required']">This Field is Required</span>
+      </div>
+      <br />
+
+      <label for="email">Email Adress</label>
+      <input #email class="input" type="email" id="email" name="email" formControlName="email"/>
+      <div class="text-danger" *ngIf="userForm.controls?.['email']?.touched">
+        <span *ngIf="userForm.controls?.['email']?.errors?.['required']">This Field is Required</span>
+      </div>
+      <br />
+
+      <button class="btn" *ngIf="!isUpdateMode" (click)="createUser()" value="Create User">Save</button>
+      <button class="btn" *ngIf="isUpdateMode" (click)="updateUser()"  value="Create User">Update</button>
+    </form>
+  </div>
+</div>
+<!-- {{userList|json}} -->
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Action</th>
+  </tr>
+  @for (user of userList; track user.user_id) {
+  <tr>
+    <td>{{ user.user_id }}</td>
+    <td>{{ user.first_name }}</td>
+    <td>{{ user.last_name }}</td>
+    <td>{{ user.email }}</td>
+    <td>
+      <button
+        class="btn del"
+        (click)="ShowModal('delete',user.user_id)"
+        style="margin-right: 5px"
+      >
+        delete
+      </button>
+      <button class="btn upd" (click)="editUser(user.user_id)">update</button>
+    </td>
+  </tr>
+
+  }@empty {
+  <h2>No Users</h2>
+  }
+</table>
+<!-- modal delete  -->
+<div class="add-info-modal" #modalDelete>
+  <div class="modal-content">
+    <span class="close" #close (click)="closeModal()">&times;</span>
+    <h3>Are you sure you want to delte this user with id {{selectedUserIdToDelete}}?</h3>
+    <button class="btn" (click)="confirmDelete()" >Yes</button>
+    <button class="btn" (click)="closeModal()">No</button>
+  </div>
+</div>
+<!-- modal edit  -->
+<div class="add-info-modal" #modalEdit>
+  <div class="modal-content">
+    <span class="close" #close>&times;</span>
+    <form>
+      <input type="text" #update_fname placeholder="Fist Name" />
+      <input type="text" #update_lame placeholder="Last Name" />
+
+      <input type="email" #update_email placeholder="Email" />
+      <button type="submit" class="btn">Edit</button>
+    </form>
+  </div>
+</div>

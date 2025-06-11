@@ -1,0 +1,3 @@
+# Ignore sensitive files
+service-account.json
+.env.example
